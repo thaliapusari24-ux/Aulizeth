@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin | Aulizeth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="aula.css" />
+  <style>
+    .admin-hero { background: linear-gradient(135deg, #1e3a8a, #4f46e5); color: #fff; }
+    .admin-hero .badge { background: rgba(255,255,255,.2); }
+
+    /* Tabs */
+    .admin-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 24px 0 18px; }
+    .admin-tab { background: #fff; border: 1px solid #e5e7eb; border-radius: 999px; padding: 10px 18px; font-family: inherit; font-weight: 600; font-size: 14px; color: #374151; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+    .admin-tab:hover { border-color: #4f46e5; color: #4f46e5; }
+    .admin-tab.active { background: #4f46e5; color: #fff; border-color: #4f46e5; box-shadow: 0 6px 16px rgba(79,70,229,.25); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Tablas */
+    .admin-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,.06); }
+    .admin-table th, .admin-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid #eef2f7; font-size: 14px; vertical-align: middle; }
+    .admin-table th { background: #f8fafc; font-weight: 600; color: #374151; text-transform: uppercase; font-size: 12px; letter-spacing: .5px; }
+    .admin-table tr:last-child td { border-bottom: none; }
+
+    .role-pill { padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; display: inline-block; }
+    .role-admin { background: #fef3c7; color: #92400e; }
+    .role-student { background: #dbeafe; color: #1e40af; }
+
+    .tipo-pill { padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .tipo-info { background: #dbeafe; color: #1e40af; }
+    .tipo-importante { background: #fee2e2; color: #991b1b; }
+    .tipo-exito { background: #dcfce7; color: #166534; }
+
+    .empty-state { padding: 40px; text-align: center; color: #6b7280; background: #fff; border-radius: 12px; }
+    .banner { padding: 12px 16px; border-radius: 10px; margin-bottom: 16px; font-size: 14px; display: none; }
+    .banner.show { display: block; }
+    .banner.error { background: #fee2e2; color: #991b1b; }
+    .banner.success { background: #dcfce7; color: #166534; }
+
+    /* Formularios admin */
+    .admin-form { background: #fff; padding: 22px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,.06); margin-bottom: 20px; }
+    .admin-form h3 { margin: 0 0 16px; color: #1e293b; font-size: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label { font-size: 13px; font-weight: 600; color: #374151; }
+    .form-field input, .form-field textarea, .form-field select { padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-family: inherit; font-size: 14px; }
+    .form-field textarea { resize: vertical; min-height: 80px; }
+    .form-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+    .btn-primary { background: #4f46e5; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-family: inherit; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: #4338ca; }
+    .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+    .btn-ghost { background: transparent; color: #6b7280; border: 1px solid #d1d5db; padding: 10px 16px; border-radius: 8px; font-family: inherit; font-weight: 600; cursor: pointer; }
+    .btn-danger { background: #fee2e2; color: #991b1b; border: none; padding: 6px 12px; border-radius: 6px; font-family: inherit; font-weight: 600; font-size: 12px; cursor: pointer; }
+    .btn-danger:hover { background: #fecaca; }
+    .btn-mini { background: #eef2ff; color: #4338ca; border: none; padding: 6px 12px; border-radius: 6px; font-family: inherit; font-weight: 600; font-size: 12px; cursor: pointer; margin-right: 6px; }
+    .btn-mini:hover { background: #e0e7ff; }
+
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .admin-table th:nth-child(3), .admin-table td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container navbar">
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="logo-text">
+          <h2>Aulizeth</h2>
+          <span>PANEL ADMIN</span>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="aula.html"><i class="fa-solid fa-chalkboard-user"></i> Ver Aula</a></li>
+          <li><a href="index.html">Sitio público</a></li>
+        </ul>
+      </nav>
+      <div class="nav-buttons">
+        <div class="user-chip">
+          <div class="user-avatar" id="userAvatar">A</div>
+          <span id="userName">Administrador</span>
+        </div>
+        <button class="btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container dashboard">
+    <section class="welcome-banner admin-hero">
+      <div class="welcome-text">
+        <span class="badge">ACCESO ADMINISTRADOR</span>
+        <h1 id="welcomeTitle">Panel de administración</h1>
+        <p>Gestiona usuarios, publica anuncios y agrega talleres que verán tus alumnos en tiempo real.</p>
+      </div>
+      <div class="stat-chips">
+        <div class="stat-chip"><strong id="statUsers">–</strong><span>Usuarios</span></div>
+        <div class="stat-chip"><strong id="statAdmins">–</strong><span>Admins</span></div>
+        <div class="stat-chip"><strong id="statAnuncios">–</strong><span>Anuncios</span></div>
+        <div class="stat-chip"><strong id="statTalleres">–</strong><span>Talleres</span></div>
+        <div class="stat-chip"><strong id="statCursos">–</strong><span>Cursos</span></div>
+        <div class="stat-chip"><strong id="statMensajes">–</strong><span>Mensajes</span></div>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <div class="admin-tabs" role="tablist">
+      <button class="admin-tab active" data-tab="usuarios"><i class="fa-solid fa-users"></i> Usuarios</button>
+      <button class="admin-tab" data-tab="anuncios"><i class="fa-solid fa-bullhorn"></i> Anuncios</button>
+      <button class="admin-tab" data-tab="talleres"><i class="fa-solid fa-book-open"></i> Talleres</button>
+      <button class="admin-tab" data-tab="cursos"><i class="fa-solid fa-graduation-cap"></i> Cursos</button>
+      <button class="admin-tab" data-tab="talleresaula"><i class="fa-solid fa-chalkboard"></i> Talleres del Aula</button>
+      <button class="admin-tab" data-tab="mensajes"><i class="fa-solid fa-envelope"></i> Mensajes <span id="mensajesDot" style="display:none;background:#ef4444;color:#fff;border-radius:999px;padding:2px 8px;font-size:11px;margin-left:4px;"></span></button>
+    </div>
+
+    <div id="globalBanner" class="banner"></div>
+
+    <!-- ============ USUARIOS ============ -->
+    <section class="tab-panel active" id="tab-usuarios">
+      <div class="section-header"><h2>Usuarios registrados</h2></div>
+      <div id="usuariosWrap">
+        <div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i> Cargando usuarios...</div>
+      </div>
+    </section>
+
+    <!-- ============ ANUNCIOS ============ -->
+    <section class="tab-panel" id="tab-anuncios">
+      <form class="admin-form" id="anuncioForm">
+        <h3><i class="fa-solid fa-bullhorn"></i> Publicar un anuncio para los alumnos</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="anuncioTitulo">Título *</label>
+            <input id="anuncioTitulo" type="text" required maxlength="80" placeholder="Ej: Clase suspendida este viernes" />
+          </div>
+          <div class="form-field">
+            <label for="anuncioTipo">Tipo</label>
+            <select id="anuncioTipo">
+              <option value="info">Informativo</option>
+              <option value="importante">Importante</option>
+              <option value="exito">Buena noticia</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="anuncioMensaje">Mensaje *</label>
+            <textarea id="anuncioMensaje" required maxlength="500" placeholder="Escribe el mensaje que verán los alumnos en su aula..."></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Publicar anuncio</button>
+        </div>
+      </form>
+
+      <div class="section-header"><h2>Anuncios publicados</h2></div>
+      <div id="anunciosWrap">
+        <div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i> Cargando anuncios...</div>
+      </div>
+    </section>
+
+    <!-- ============ TALLERES EXTRA ============ -->
+    <section class="tab-panel" id="tab-talleres">
+      <form class="admin-form" id="tallerForm">
+        <h3><i class="fa-solid fa-book-open"></i> Agregar un taller extra al aula</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="tallerTitulo">Título *</label>
+            <input id="tallerTitulo" type="text" required maxlength="80" placeholder="Ej: Introducción a Python" />
+          </div>
+          <div class="form-field">
+            <label for="tallerTag">Categoría</label>
+            <input id="tallerTag" type="text" maxlength="30" placeholder="Ej: PROGRAMACIÓN" />
+          </div>
+          <div class="form-field full">
+            <label for="tallerDescripcion">Descripción / próxima clase</label>
+            <input id="tallerDescripcion" type="text" maxlength="120" placeholder="Ej: Próxima clase: variables y tipos de datos" />
+          </div>
+          <div class="form-field full">
+            <label for="tallerImagen">URL de la imagen (opcional)</label>
+            <input id="tallerImagen" type="url" placeholder="https://..." />
+          </div>
+          <div class="form-field full">
+            <label for="tallerEnlace">Enlace de la clase (opcional)</label>
+            <input id="tallerEnlace" type="url" placeholder="https://meet.google.com/... o link a YouTube" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Agregar taller</button>
+        </div>
+      </form>
+
+      <div class="section-header"><h2>Talleres publicados por el admin</h2></div>
+      <div id="talleresWrap">
+        <div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i> Cargando talleres...</div>
+      </div>
+    </section>
+
+    <!-- ============ CURSOS (visibles para todos en la web) ============ -->
+    <section class="tab-panel" id="tab-cursos">
+      <form class="admin-form" id="cursoForm">
+        <h3><i class="fa-solid fa-graduation-cap"></i> <span id="cursoFormTitulo">Agregar un curso a la página web</span></h3>
+        <input type="hidden" id="cursoEditId" value="" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cursoTitulo">Título *</label>
+            <input id="cursoTitulo" type="text" required maxlength="100" placeholder="Ej: Introducción a Python" />
+          </div>
+          <div class="form-field">
+            <label for="cursoCategoria">Categoría</label>
+            <select id="cursoCategoria">
+              <option value="computacion">Computación</option>
+              <option value="diseno">Diseño</option>
+              <option value="programacion">Programación</option>
+              <option value="marketing">Marketing</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="cursoAutor">Autor / Profesor</label>
+            <input id="cursoAutor" type="text" maxlength="80" placeholder="Ej: Prof. Karen Gómez" />
+          </div>
+          <div class="form-field">
+            <label for="cursoImagen">URL de la imagen</label>
+            <input id="cursoImagen" type="url" placeholder="https://..." />
+          </div>
+          <div class="form-field full">
+            <label for="cursoDescripcion">Descripción *</label>
+            <textarea id="cursoDescripcion" required maxlength="400" placeholder="Descripción breve del curso..."></textarea>
+          </div>
+          <div class="form-field full">
+            <label for="cursoLecciones">Lecciones (una por línea, formato <strong>Título | Contenido</strong>)</label>
+            <textarea id="cursoLecciones" rows="5" placeholder="Introducción | En esta lección aprenderás...&#10;Variables | Las variables son..."></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-ghost" id="cursoCancelBtn" style="display:none;">Cancelar edición</button>
+          <button type="submit" class="btn-primary" id="cursoSubmitBtn"><i class="fa-solid fa-plus"></i> Agregar curso</button>
+        </div>
+      </form>
+
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <h2>Cursos disponibles en la web</h2>
+        <button type="button" id="btnRestaurarCursos" class="btn-ghost" style="background:#0f1a3d;color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;">
+          <i class="fa-solid fa-rotate"></i> Cargar/Restaurar cursos base de la web
+        </button>
+      </div>
+      <div id="cursosWrap">
+        <div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i> Cargando cursos...</div>
+      </div>
+    </section>
+
+    <!-- ============ TALLERES DEL AULA (los que aparecen en "Ver Aula") ============ -->
+    <section class="tab-panel" id="tab-talleresaula">
+      <form class="admin-form" id="tallerAulaForm">
+        <h3><i class="fa-solid fa-chalkboard"></i> <span id="tallerAulaFormTitulo">Agregar taller al Aula</span></h3>
+        <p style="margin:-8px 0 14px;color:#6b7280;font-size:13px;">Estos talleres aparecen en <strong>Ver Aula</strong> con módulos y lecciones. Los alumnos pueden abrirlos y marcar su progreso.</p>
+        <input type="hidden" id="tallerAulaEditId" value="" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="tallerAulaTitulo">Título del taller *</label>
+            <input id="tallerAulaTitulo" type="text" required maxlength="100" placeholder="Ej: Fundamentos de HTML y CSS" />
+          </div>
+          <div class="form-field">
+            <label for="tallerAulaTag">Etiqueta (categoría)</label>
+            <input id="tallerAulaTag" type="text" maxlength="40" placeholder="Ej: DISEÑO WEB" />
+          </div>
+          <div class="form-field">
+            <label for="tallerAulaLesson">Próxima clase / subtítulo</label>
+            <input id="tallerAulaLesson" type="text" maxlength="120" placeholder="Ej: Próxima clase: Flexbox y Grid" />
+          </div>
+          <div class="form-field">
+            <label for="tallerAulaImagen">URL de imagen</label>
+            <input id="tallerAulaImagen" type="url" placeholder="https://..." />
+          </div>
+          <div class="form-field full">
+            <label for="tallerAulaModulos">Módulos y lecciones <span style="color:#6b7280;font-weight:400;">(formato: <code>Módulo · Título del módulo</code> y debajo <code>- Título lección | tipo | duración | contenido</code>. Tipos: <b>video</b>, <b>texto</b>, <b>quiz</b>. Si tipo es video, el contenido es la URL del video)</span></label>
+            <textarea id="tallerAulaModulos" rows="10" placeholder="Módulo · Bases de HTML
+- Estructura de un documento HTML | video | 8 min | https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4
+- Etiquetas semánticas | texto | 6 min | Las etiquetas semánticas describen el significado del contenido.
+Módulo · Flexbox y Grid
+- Introducción a Flexbox | video | 10 min | https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4
+- Cuestionario | quiz | 4 min | Repasa lo aprendido respondiendo mentalmente..."></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-ghost" id="tallerAulaCancelBtn" style="display:none;">Cancelar edición</button>
+          <button type="submit" class="btn-primary" id="tallerAulaSubmitBtn"><i class="fa-solid fa-plus"></i> Agregar taller</button>
+        </div>
+      </form>
+
+      <div class="section-header"><h2>Talleres del Aula publicados</h2></div>
+      <div id="talleresAulaWrap">
+        <div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i> Cargando talleres del aula...</div>
+      </div>
+    </section>
+
+    <!-- ============ MENSAJES DE CONTACTO ============ -->
+    <section class="tab-panel" id="tab-mensajes">
+      <div class="section-header"><h2>Mensajes recibidos desde el formulario de contacto</h2></div>
+      <div id="mensajesWrap">
+        <div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i> Cargando mensajes...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div><h3>Aulizeth</h3><span>PANEL ADMIN</span></div>
+      </div>
+      <p>© 2026 Aulizeth. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-guard.js"></script>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

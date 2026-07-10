@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | Aulizeth</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="registrate.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="container navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="logo-text">
+                <h2>Aulizeth</h2>
+                <span>ESCUELA DIGITAL</span>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+
+        </nav>
+
+        <div class="nav-buttons">
+
+            <a href="iniciarsesion.html" class="login-link">
+
+                Iniciar Sesión
+
+            </a>
+
+            <a href="registrate.html" class="btn-register">
+
+                Regístrate
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ========================= -->
+
+<section class="register-section">
+
+    <div class="register-card">
+
+        <!-- IZQUIERDA -->
+
+        <div class="left">
+
+            <span class="badge">
+
+                ¿POR QUÉ REGISTRARTE?
+
+            </span>
+
+            <h1>
+
+                Tu viaje digital inicia
+                con calma aquí
+
+            </h1>
+
+            <ul class="benefits">
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Clases claras desde cero absoluto.
+
+                </li>
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Glosario inteligente por analogías cotidianas.
+
+                </li>
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Tutor de consulta IA paciente las 24 horas.
+
+                </li>
+
+            </ul>
+
+            <small>
+
+                Aulizeth es una escuela certificada
+                de computación básica.
+
+            </small>
+
+        </div>
+
+        <!-- DERECHA -->
+
+        <div class="right">
+
+            <h2>
+
+                Crea tu cuenta de Alumno
+
+            </h2>
+
+            <p class="subtitle">
+
+                Únete y empieza a aprender computación e informática a tu ritmo.
+
+            </p>
+
+            <form id="registerForm" novalidate>
+
+                <label for="nombre">
+
+                    NOMBRE COMPLETO
+
+                </label>
+
+                <div class="input" id="nombreWrapper">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <input
+                        id="nombre"
+                        name="nombre"
+                        type="text"
+                        autocomplete="name"
+                        placeholder="Ej: Lizeth Pusari Gomez">
+
+                </div>
+
+                <span class="error-message" id="nombreError"></span>
+
+                <label for="correo">
+
+                    CORREO ELECTRÓNICO
+
+                </label>
+
+                <div class="input" id="correoWrapper">
+
+                    <i class="fa-regular fa-envelope"></i>
+
+                    <input
+                        id="correo"
+                        name="correo"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="ejemplo@gmail.com">
+
+                </div>
+
+                <span class="error-message" id="correoError"></span>
+
+                <label for="nivel">
+
+                    ¿CUÁL ES TU NIVEL CON LA COMPUTADORA?
+
+                </label>
+
+                <select id="nivel" name="nivel">
+
+                    <option value="" selected disabled>
+
+                        Selecciona tu nivel
+
+                    </option>
+
+                    <option value="Ninguno">
+
+                        Ninguno: Es mi primera vez tocando una computadora
+
+                    </option>
+
+                    <option value="Básico">
+
+                        Básico
+
+                    </option>
+
+                    <option value="Intermedio">
+
+                        Intermedio
+
+                    </option>
+
+                    <option value="Avanzado">
+
+                        Avanzado
+
+                    </option>
+
+                </select>
+
+                <span class="error-message" id="nivelError"></span>
+
+                <div class="password-title">
+
+                    <label for="password">
+
+                        CREA TU CONTRASEÑA
+
+                    </label>
+
+                    <span id="strengthText">
+
+                        SIN CONTRASEÑA
+
+                    </span>
+
+                </div>
+
+                <div class="input" id="passwordWrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autocomplete="new-password"
+                        placeholder="Mínimo 6 caracteres">
+
+                    <i
+                        id="togglePassword"
+                        class="fa-regular fa-eye eye"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Mostrar contraseña"></i>
+
+                </div>
+
+                <div class="strength">
+
+                    <div id="strengthBar"></div>
+
+                </div>
+
+                <span class="error-message" id="passwordError"></span>
+
+                <button type="submit" id="submitBtn">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Registrarme Ahora
+
+                </button>
+
+                <p class="form-status" id="formStatus" aria-live="polite"></p>
+
+            </form>
+
+            <div class="login">
+
+                ¿Ya tienes una cuenta creada?
+
+                <a href="iniciarsesion.html">
+
+                    Inicia Sesión aquí
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Aulizeth</h3>
+
+                <span>ESCUELA DIGITAL</span>
+
+            </div>
+
+        </div>
+
+        <p>
+
+            © 2026 Aulizeth.
+            Todos los derechos reservados.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<script type="module" src="registrate.js"></script>
+
+</body>
+
+</html>

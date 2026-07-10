@@ -1,0 +1,85 @@
+rules_version = "2";
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.role == "admin";
+    }
+
+    match /usuarios/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow update: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /anuncios/{id} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /talleres/{id} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /contactos/{id} {
+      allow create: if true;
+      allow get: if isAdmin();
+      allow list: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Mensajes del formulario público de contacto (contacto.html)
+    // Cualquiera puede enviar; solo el admin puede leer y borrar.
+    match /mensajes_contacto/{id} {
+      allow create: if true;
+      allow get: if isAdmin();
+      allow list: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Cursos gestionados desde el panel admin y mostrados en la web pública.
+    // Lectura pública (para cursos.html); escritura solo admin.
+    match /cursos/{id} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Talleres del Aula (los que aparecen al entrar en "Ver Aula").
+    // Gestionados por el admin; lectura pública para que se muestren a alumnos.
+    match /talleres_aula/{id} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Metadatos internos del panel admin (bandera de siembra de cursos, etc.)
+    match /_meta/{id} {
+      allow get, list, create, update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

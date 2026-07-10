@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aulizeth | Registro de Administrador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="iniciarsesion.css">
+  <style>
+    .admin-badge{display:inline-flex;align-items:center;gap:8px;background:#fef3c7;color:#92400e;padding:6px 14px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.5px;margin-bottom:14px;}
+    .left{background:linear-gradient(135deg,#78350f,#b45309)!important;}
+    button[type="submit"]{background:linear-gradient(135deg,#b45309,#92400e)!important;}
+    .switch-mode{margin-top:14px;text-align:center;font-size:13px;color:#6b7280;}
+    .switch-mode a{color:#b45309;font-weight:600;text-decoration:none;}
+    .info-box{background:#fffbeb;border-left:4px solid #f59e0b;padding:12px 14px;border-radius:8px;font-size:13px;color:#78350f;margin-bottom:16px;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="logo-text"><h2>Aulizeth</h2><span>PANEL ADMIN</span></div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="iniciarsesion.html">Acceso Alumno</a></li>
+        </ul>
+      </nav>
+      <div class="nav-buttons">
+        <a href="admin-login.html" class="btn-register">Iniciar Sesión Admin</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="login-section">
+    <div class="login-card">
+      <div class="left">
+        <span class="admin-badge"><i class="fa-solid fa-user-shield"></i> REGISTRO PROTEGIDO</span>
+        <h1>Crear cuenta<br>de Administrador</h1>
+        <p>Para registrarte como administrador necesitas el <strong>Código de Invitación</strong> del propietario del sistema. Este código evita que cualquier persona pueda crearse una cuenta con permisos administrativos.</p>
+        <small>¿No tienes código? Contacta con la persona responsable de Aulizeth.</small>
+      </div>
+      <div class="right">
+        <h2>Registrar Administrador</h2>
+        <p class="subtitle">Completa los datos y proporciona tu código de invitación.</p>
+
+        <div class="info-box">
+          <i class="fa-solid fa-circle-info"></i>
+          Al registrarte, tu cuenta se creará automáticamente con rol <strong>admin</strong> y acceso completo al panel.
+        </div>
+
+        <form id="registerForm" novalidate>
+          <label for="nombre">NOMBRE COMPLETO</label>
+          <div class="input" id="nombreWrapper">
+            <i class="fa-regular fa-user"></i>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre del administrador">
+          </div>
+          <span class="error-message" id="nombreError"></span>
+
+          <label for="correo">CORREO ELECTRÓNICO</label>
+          <div class="input" id="correoWrapper">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="correo" name="correo" autocomplete="email" placeholder="admin@aulizeth.com">
+          </div>
+          <span class="error-message" id="correoError"></span>
+
+          <label for="password">CONTRASEÑA</label>
+          <div class="input" id="passwordWrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+            <i class="fa-regular fa-eye eye" id="togglePassword" role="button" tabindex="0"></i>
+          </div>
+          <span class="error-message" id="passwordError"></span>
+
+          <label for="codigo">CÓDIGO DE INVITACIÓN</label>
+          <div class="input" id="codigoWrapper">
+            <i class="fa-solid fa-key"></i>
+            <input type="text" id="codigo" name="codigo" placeholder="Ingresa el código secreto" autocomplete="off">
+          </div>
+          <span class="error-message" id="codigoError"></span>
+
+          <button type="submit" id="submitBtn">
+            <i class="fa-solid fa-user-shield"></i> Crear cuenta de Admin
+          </button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+
+        <div class="switch-mode">
+          ¿Ya tienes cuenta admin? <a href="admin-login.html">Inicia sesión</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="admin-registrate.js"></script>
+</body>
+</html>

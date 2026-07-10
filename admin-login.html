@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aulizeth | Acceso Administrador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="iniciarsesion.css">
+  <style>
+    .admin-badge{display:inline-flex;align-items:center;gap:8px;background:#fef3c7;color:#92400e;padding:6px 14px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.5px;margin-bottom:14px;}
+    .left{background:linear-gradient(135deg,#78350f,#b45309)!important;}
+    button[type="submit"]{background:linear-gradient(135deg,#b45309,#92400e)!important;}
+    .switch-mode{margin-top:14px;text-align:center;font-size:13px;color:#6b7280;}
+    .switch-mode a{color:#b45309;font-weight:600;text-decoration:none;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="logo-text"><h2>Aulizeth</h2><span>PANEL ADMIN</span></div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="iniciarsesion.html">Acceso Alumno</a></li>
+        </ul>
+      </nav>
+      <div class="nav-buttons">
+        <a href="admin-registrate.html" class="btn-register">Registrar Admin</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="login-section">
+    <div class="login-card">
+      <div class="left">
+        <span class="admin-badge"><i class="fa-solid fa-shield-halved"></i> ZONA RESTRINGIDA</span>
+        <h1>Acceso<br>Administrador</h1>
+        <p>Este panel es exclusivo para el personal administrativo de Aulizeth. Ingresa con tus credenciales de administrador para gestionar usuarios, anuncios y talleres.</p>
+        <small>Si eres alumno, usa el acceso normal desde el menú superior.</small>
+      </div>
+      <div class="right">
+        <h2>Iniciar Sesión (Admin)</h2>
+        <p class="subtitle">Ingresa con tu correo y contraseña de administrador.</p>
+        <form id="loginForm" novalidate>
+          <label for="email">CORREO DE ADMINISTRADOR</label>
+          <div class="input" id="emailWrapper">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="admin@aulizeth.com">
+          </div>
+          <span class="error-message" id="emailError"></span>
+
+          <div class="label-row">
+            <label for="password">CONTRASEÑA</label>
+          </div>
+          <div class="input" id="passwordWrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Tu clave de administrador">
+            <i class="fa-regular fa-eye eye" id="togglePassword" role="button" tabindex="0" aria-label="Mostrar contraseña"></i>
+          </div>
+          <span class="error-message" id="passwordError"></span>
+
+          <button type="submit" id="submitBtn">
+            <i class="fa-solid fa-shield-halved"></i> Entrar al Panel Admin
+          </button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+
+        <div class="switch-mode">
+          ¿Aún no eres administrador? <a href="admin-registrate.html">Solicita tu acceso</a>
+          <br>¿Eres alumno? <a href="iniciarsesion.html">Ingresa aquí</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="admin-login.js"></script>
+</body>
+</html>
