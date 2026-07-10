@@ -1,0 +1,800 @@
+/*=========================
+    RESET
+=========================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --azul:#2d49a8;
+    --azulOscuro:#223b91;
+    --naranja:#f9a602;
+    --gris:#6b7280;
+    --borde:#e5e7eb;
+    --fondo:#f4f7fc;
+    --error:#e0384d;
+    --exito:#22c55e;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:var(--fondo);
+    color:#1f2937;
+
+}
+
+/*=========================
+    CONTENEDOR
+=========================*/
+
+.container{
+
+    width:90%;
+    max-width:1280px;
+    margin:auto;
+
+}
+
+/*=========================
+    HEADER
+=========================*/
+
+header{
+
+    background:#fff;
+    box-shadow:0 3px 15px rgba(0,0,0,.05);
+    transition:box-shadow .3s;
+
+}
+
+.navbar{
+
+    height:85px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
+
+.logo-icon{
+
+    width:48px;
+    height:48px;
+
+    border-radius:14px;
+
+    background:linear-gradient(180deg,#3b67df,#2445a7);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    font-size:20px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.20);
+
+}
+
+.logo-text h2{
+
+    font-size:30px;
+    font-weight:700;
+
+}
+
+.logo-text span{
+
+    font-size:12px;
+    letter-spacing:2px;
+    color:#3564da;
+
+}
+
+nav ul{
+
+    display:flex;
+    gap:40px;
+    list-style:none;
+
+}
+
+nav a{
+
+    text-decoration:none;
+    color:#374151;
+    font-weight:500;
+
+}
+
+nav a:hover{
+
+    color:var(--azul);
+
+}
+
+.nav-buttons{
+
+    display:flex;
+    gap:20px;
+    align-items:center;
+
+}
+
+.login-link{
+
+    color:#374151;
+    text-decoration:none;
+    font-weight:600;
+
+}
+
+.btn-register{
+
+    background:var(--azul);
+    color:white;
+    text-decoration:none;
+
+    padding:14px 26px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-register:hover{
+
+    background:var(--azulOscuro);
+
+}
+
+/*=========================
+    TARJETA
+=========================*/
+
+.register-section{
+
+    padding:60px 20px;
+
+}
+
+.register-card{
+
+    max-width:1120px;
+
+    margin:auto;
+
+    background:white;
+
+    display:flex;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:0 25px 50px rgba(0,0,0,.18);
+
+}
+
+/*=========================
+    IZQUIERDA
+=========================*/
+
+.left{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:50%;
+
+    background:linear-gradient(180deg,#2f49a9,#2c438f);
+
+    color:white;
+
+    padding:55px;
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+/* Cielo estrellado en movimiento */
+.left::before,
+.left::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:0;
+
+    pointer-events:none;
+
+    background-repeat:repeat;
+
+}
+
+.left::before{
+
+    background-image:
+        radial-gradient(1.8px 1.8px at 30px 40px,#fff,transparent),
+        radial-gradient(1.3px 1.3px at 100px 120px,#fff,transparent),
+        radial-gradient(2.2px 2.2px at 170px 60px,#ffe066,transparent),
+        radial-gradient(1.3px 1.3px at 240px 160px,#fff,transparent),
+        radial-gradient(1.8px 1.8px at 60px 200px,#2dd4bf,transparent),
+        radial-gradient(2.4px 2.4px at 300px 30px,#fff,transparent),
+        radial-gradient(1.3px 1.3px at 340px 130px,#fff,transparent),
+        radial-gradient(1.8px 1.8px at 130px 250px,#ffe066,transparent);
+
+    background-size:380px 280px;
+
+    opacity:.9;
+
+    animation:registroEstrellas1 22s linear infinite, registroParpadeo 1.8s ease-in-out infinite alternate;
+
+}
+
+.left::after{
+
+    background-image:
+        radial-gradient(1.5px 1.5px at 50px 70px,#fff,transparent),
+        radial-gradient(2px 2px at 150px 30px,#2dd4bf,transparent),
+        radial-gradient(1.3px 1.3px at 220px 140px,#fff,transparent),
+        radial-gradient(1.8px 1.8px at 20px 170px,#fff,transparent),
+        radial-gradient(1.3px 1.3px at 280px 200px,#ffe066,transparent),
+        radial-gradient(2px 2px at 330px 90px,#fff,transparent);
+
+    background-size:400px 260px;
+
+    opacity:.6;
+
+    animation:registroEstrellas2 30s linear infinite reverse, registroParpadeo 2.6s ease-in-out infinite alternate-reverse;
+
+}
+
+@keyframes registroEstrellas1{
+    from{ transform:translate3d(0,0,0); }
+    to{ transform:translate3d(-380px,-280px,0); }
+}
+
+@keyframes registroEstrellas2{
+    from{ transform:translate3d(0,0,0); }
+    to{ transform:translate3d(400px,-260px,0); }
+}
+
+@keyframes registroParpadeo{
+    0%{ filter:brightness(.6); }
+    50%{ filter:brightness(1.35); }
+    100%{ filter:brightness(.9); }
+}
+
+.badge,
+.left h1,
+.benefits,
+.left small{
+    position:relative;
+    z-index:1;
+}
+
+.badge{
+
+    display:inline-block;
+
+    width:max-content;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.12);
+
+    color:#ffb000;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.left h1{
+
+    margin-top:35px;
+
+    font-size:52px;
+
+    line-height:1.1;
+
+    animation:colorCambiante 9s ease-in-out infinite;
+
+}
+
+@keyframes colorCambiante{
+
+    0%{ color:#ffffff; text-shadow:0 0 18px rgba(255,255,255,.5); }
+
+    33%{ color:#ffe066; text-shadow:0 0 18px rgba(255,224,102,.6); }
+
+    66%{ color:#2dd4bf; text-shadow:0 0 18px rgba(45,212,191,.6); }
+
+    100%{ color:#ffffff; text-shadow:0 0 18px rgba(255,255,255,.5); }
+
+}
+
+.benefits{
+
+    list-style:none;
+
+    margin-top:35px;
+
+}
+
+.benefits li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:22px;
+
+}
+
+.benefits i{
+
+    color:#ffb000;
+
+}
+
+.left small{
+
+    margin-top:auto;
+
+    color:#dfe6ff;
+
+}
+
+/*=========================
+    DERECHA
+=========================*/
+
+.right{
+
+    width:50%;
+
+    padding:48px;
+
+}
+
+.right h2{
+
+    font-size:40px;
+
+}
+
+.subtitle{
+
+    color:#8a8a8a;
+
+    margin:10px 0 30px;
+
+}
+
+/*=========================
+    FORMULARIO
+=========================*/
+
+label{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#5f6368;
+
+}
+
+.input{
+
+    margin-top:8px;
+    margin-bottom:8px;
+
+    display:flex;
+    align-items:center;
+
+    border:1px solid var(--borde);
+
+    border-radius:14px;
+
+    padding:15px;
+
+    transition:.25s;
+
+}
+
+.input:focus-within{
+
+    border-color:var(--azul);
+
+    box-shadow:0 0 0 3px rgba(45,73,168,.12);
+
+}
+
+.input.input-error{
+
+    border-color:var(--error);
+
+    box-shadow:0 0 0 3px rgba(224,56,77,.12);
+
+}
+
+.input i{
+
+    color:#999;
+
+}
+
+.input input{
+
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    margin-left:12px;
+
+    font-family:'Poppins';
+
+}
+
+.eye{
+
+    cursor:pointer;
+
+}
+
+select{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:8px;
+    margin-bottom:8px;
+
+    border:1px solid var(--borde);
+
+    border-radius:14px;
+
+    font-family:'Poppins';
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+select.input-error{
+
+    border-color:var(--error);
+
+    box-shadow:0 0 0 3px rgba(224,56,77,.12);
+
+}
+
+.error-message{
+
+    display:block;
+
+    min-height:18px;
+
+    color:var(--error);
+
+    font-size:12.5px;
+
+    margin-bottom:14px;
+
+}
+
+.password-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.password-title span{
+
+    font-size:12px;
+
+    color:#888;
+
+    font-weight:600;
+
+}
+
+.strength{
+
+    width:100%;
+    height:6px;
+
+    border-radius:50px;
+
+    background:#e5e7eb;
+
+    margin-top:10px;
+    margin-bottom:6px;
+
+}
+
+#strengthBar{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:50px;
+
+    background:#ef4444;
+
+    transition:.3s;
+
+}
+
+/*=========================
+    BOTON
+=========================*/
+
+button{
+
+    width:100%;
+
+    border:none;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    background:#f9a602;
+
+    color:#111827;
+
+    font-weight:700;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 18px rgba(249,166,2,.35);
+
+    transition:.3s;
+
+}
+
+button:hover:not(:disabled){
+
+    transform:translateY(-2px);
+
+    background:#f5a000;
+
+}
+
+button:disabled{
+
+    cursor:not-allowed;
+
+    opacity:.9;
+
+}
+
+.form-status{
+
+    text-align:center;
+
+    margin-top:14px;
+
+    font-size:13.5px;
+
+    min-height:18px;
+
+}
+
+.form-status.success{
+
+    color:var(--exito);
+
+}
+
+.form-status.error{
+
+    color:var(--error);
+
+}
+
+.login{
+
+    text-align:center;
+
+    margin-top:22px;
+
+    color:#666;
+
+}
+
+.login a{
+
+    color:var(--azul);
+
+    font-weight:600;
+
+    text-decoration:none;
+
+}
+
+/*=========================
+    FOOTER
+=========================*/
+
+footer{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#131c33;
+
+    color:white;
+
+    padding:40px;
+
+    margin-top:60px;
+
+}
+
+footer::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:0;
+
+    pointer-events:none;
+
+    background-repeat:repeat;
+
+    background-image:
+        radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),
+        radial-gradient(2px 2px at 110px 70px,#ffe066,transparent),
+        radial-gradient(1.3px 1.3px at 190px 20px,#fff,transparent),
+        radial-gradient(1.8px 1.8px at 70px 120px,#2dd4bf,transparent),
+        radial-gradient(1.3px 1.3px at 230px 100px,#fff,transparent),
+        radial-gradient(2px 2px at 260px 40px,#fff,transparent);
+
+    background-size:280px 160px;
+
+    opacity:.8;
+
+    animation:registroEstrellas1 26s linear infinite, registroParpadeo 2s ease-in-out infinite alternate;
+
+}
+
+.footer-content{
+
+    position:relative;
+
+    z-index:1;
+
+    text-align:center;
+
+}
+
+.footer-logo{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:15px;
+
+}
+
+.footer-logo span{
+
+    color:#8fb0ff;
+
+    font-size:12px;
+
+}
+
+/*=========================
+    RESPONSIVE
+=========================*/
+
+@media(max-width:900px){
+
+.register-card{
+
+flex-direction:column;
+
+}
+
+.left,
+.right{
+
+width:100%;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.nav-buttons{
+
+display:none;
+
+}
+
+.left{
+
+padding:35px;
+
+}
+
+.left h1{
+
+font-size:38px;
+
+}
+
+.right{
+
+padding:30px;
+
+}
+
+.right h2{
+
+font-size:30px;
+
+}
+
+}
