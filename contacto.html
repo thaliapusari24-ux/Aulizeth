@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aulizeth — Contacto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="contacto.css">
+</head>
+<body>
+
+<!-- Fondo de noche estrellada -->
+<div class="stars-bg" aria-hidden="true">
+  <canvas id="starsCanvas"></canvas>
+  <div class="shooting-star"></div>
+  <div class="shooting-star shooting-star-2"></div>
+</div>
+
+<div class="top-rule"></div>
+
+<header class="nav">
+  <div class="nav-inner" id="navInner">
+    <div class="brand-row">
+      <a href="#inicio" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L2 8l10 5 8-4v6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 10.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-5.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Aulizeth</span>
+          <span class="brand-tagline">Escuela Digital</span>
+        </span>
+      </a>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="links">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="contacto.html" class="active">Contacto</a>
+    </nav>
+    <div class="nav-auth">
+      <a href="iniciarsesión.html" class="btn-ghost">Iniciar sesión</a>
+      <a class="btn-solid" href="registrate.html" target="_blank" rel="noopener">Regístrate</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="contacto">
+  <div class="hero-inner">
+    <span class="eyebrow">Contacto</span>
+    <h1 class="hero-title"><span class="rainbow-text">Hablemos de tu aprendizaje</span></h1>
+    <p>Escríbenos para recibir ayuda o conocer más sobre Aulizeth.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="grid">
+
+    <section class="card" aria-labelledby="info-title">
+      <h2 id="info-title">Información</h2>
+
+      <div class="info-item">
+        <div class="label">Desarrolladora Web</div>
+        <div class="value">Lizeth Thalia Pusari Gómez</div>
+      </div>
+
+      <div class="info-item">
+        <div class="label">Correo</div>
+        <div class="value"><a href="mailto:lizeth.pusari@aulizeth.com">lizeth.pusari@aulizeth.com</a></div>
+      </div>
+
+      <div class="info-item">
+        <div class="label">Teléfono</div>
+        <div class="value"><a href="tel:+51914964051">+51 914 964 051</a></div>
+      </div>
+
+      <div class="map-label">Ubicación</div>
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=Villa+El+Salvador,+Lima,+Peru&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa de ubicación">
+        </iframe>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Envíanos un mensaje</h2>
+
+      <form id="contactForm" novalidate>
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name">
+          <span class="error-msg" id="err-nombre"></span>
+        </div>
+
+        <div class="field">
+          <label for="correo">Correo</label>
+          <input type="email" id="correo" name="correo" placeholder="Tu correo" autocomplete="email">
+          <span class="error-msg" id="err-correo"></span>
+        </div>
+
+        <div class="field">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje..."></textarea>
+          <span class="error-msg" id="err-mensaje"></span>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Enviar mensaje</button>
+
+        <div class="form-status" id="formStatus" role="status" aria-live="polite">
+          <svg class="status-icon" id="statusIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+          <span id="statusText"></span>
+        </div>
+      </form>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3L2 8l10 5 8-4v6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 10.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-5.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">Aulizeth</span>
+        <span class="brand-tagline">Escuela Digital</span>
+      </span>
+    </div>
+    <div class="footer-meta">
+      <div>© 2026 Aulizeth. Todos los derechos reservados.</div>
+      <div class="credit">Desarrollado por Lizeth Thalia Pusari Gómez</div>
+    </div>
+  </div>
+</footer>
+
+<script src="contacto.js"></script>
+
+</body>
+</html>

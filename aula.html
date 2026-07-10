@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Aula | Aulizeth</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="aula.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="container navbar">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div class="logo-text">
+                    <h2>Aulizeth</h2>
+                    <span>ESCUELA DIGITAL</span>
+                </div>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li><a href="index.html">Inicio</a></li>
+
+                    <li><a href="nosotros.html">Nosotros</a></li>
+
+                    <li><a href="cursos.html" class="active">Cursos</a></li>
+
+                    <li><a href="contacto.html">Contacto</a></li>
+
+                </ul>
+
+            </nav>
+
+            <div class="nav-buttons">
+
+                <div class="user-chip">
+
+                    <div class="user-avatar" id="userAvatar">E</div>
+
+                    <span id="userName">Estudiante</span>
+
+                </div>
+
+                <button class="btn-logout" id="logoutBtn">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Cerrar sesión
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ================= CONTENIDO ================= -->
+
+    <main class="container dashboard">
+
+        <!-- Bienvenida -->
+
+        <section class="welcome-banner">
+
+            <div class="welcome-text">
+
+                <span class="badge">TU AULA VIRTUAL</span>
+
+                <h1 id="welcomeTitle">¡Hola de nuevo!</h1>
+
+                <p>Este es tu espacio personal. Aquí puedes continuar tus talleres y revisar tu progreso en cada uno.</p>
+
+            </div>
+
+            <div class="stat-chips">
+
+                <div class="stat-chip">
+                    <strong id="statCourses">3</strong>
+                    <span>Talleres activos</span>
+                </div>
+
+                <div class="stat-chip">
+                    <strong id="statProgress">0%</strong>
+                    <span>Progreso general</span>
+                </div>
+
+                <div class="stat-chip">
+                    <strong id="statNext">Vie 10:00</strong>
+                    <span>Próxima consulta</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Talleres activos -->
+
+        <section class="section-block">
+
+            <div class="section-header">
+                <h2>Tus talleres activos</h2>
+                <a href="cursos.html" class="see-all">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="courses-grid" id="coursesGrid">
+
+                <!-- Las tarjetas se generan dinámicamente desde aula.js -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= VISOR DE TALLER (dentro de Mi Aula) ================= -->
+
+    <div class="course-viewer" id="courseViewer" aria-hidden="true">
+
+        <div class="viewer-overlay" id="viewerOverlay"></div>
+
+        <div class="viewer-panel">
+
+            <div class="viewer-header">
+
+                <button class="viewer-back" id="closeViewer">
+                    <i class="fa-solid fa-arrow-left"></i> Volver a Mi Aula
+                </button>
+
+                <div class="viewer-title-block">
+                    <span class="viewer-tag" id="viewerTag">TALLER</span>
+                    <h2 id="viewerCourseTitle">Título del taller</h2>
+                </div>
+
+                <div class="viewer-progress">
+                    <div class="viewer-progress-track">
+                        <div class="viewer-progress-fill" id="viewerProgressFill"></div>
+                    </div>
+                    <span id="viewerProgressLabel">0% completado</span>
+                </div>
+
+            </div>
+
+            <div class="viewer-body">
+
+                <aside class="viewer-sidebar" id="viewerSidebar">
+                    <!-- Módulos y lecciones generados por JS -->
+                </aside>
+
+                <section class="viewer-content" id="viewerContent">
+                    <!-- Contenido de la lección seleccionada -->
+                </section>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div>
+                    <h3>Aulizeth</h3>
+                    <span>ESCUELA DIGITAL</span>
+                </div>
+
+            </div>
+
+            <p>© 2026 Aulizeth. Todos los derechos reservados.</p>
+
+        </div>
+
+    </footer>
+
+    <script src="aula.js"></script>
+
+</body>
+
+</html>
